@@ -1,5 +1,3 @@
-local File = require("alpha4.file")
-
 local M = {}
 
 function M.normal_mode()
@@ -86,7 +84,7 @@ function M.lines(opts)
 	for _, line in ipairs(all_lines) do
 		local file_path = line:match("^@(.+)$")
 		if file_path then
-			file_contents = file_contents .. File.contents(file_path)
+			file_contents = file_contents .. M.file_contents(file_path)
 		else
 			table.insert(lines, line)
 		end
@@ -97,6 +95,36 @@ function M.lines(opts)
 	table.insert(lines, 1, header)
 
 	return file_contents .. table.concat(lines, "\n") .. "\n</File>"
+end
+
+function M.file_contents(file_path)
+	local cwd = vim.fn.getcwd()
+	local contents = ""
+
+	if file_path then
+		local full_path
+		if file_path:sub(1, 1) == "/" then
+			full_path = file_path
+		elseif file_path:sub(1, 2) == "~/" then
+			full_path = os.getenv("HOME") .. file_path:sub(2)
+		elseif file_path:sub(1, 2) == "./" then
+			full_path = cwd .. file_path:sub(2)
+		else
+			full_path = cwd .. "/" .. file_path
+		end
+		local file = io.open(full_path, "r")
+		if file then
+			local content = file:read("*all")
+			file:close()
+
+			local relative_path = vim.fn.fnamemodify(full_path, ":." .. cwd .. ":")
+			contents = string.format('\n\n<File path="%s">\n%s\n</File>', relative_path, content)
+		else
+			vim.notify("Cannot open file: " .. full_path, vim.log.levels.WARN, { title = "Alpha4" })
+		end
+	end
+
+	return contents
 end
 
 return M
