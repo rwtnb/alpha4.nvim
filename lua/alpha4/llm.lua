@@ -1,7 +1,6 @@
 local Job = require("plenary.job")
 
 local fn = vim.fn
-local api = vim.api
 
 local M = {
 	---@type Job|nil
@@ -114,7 +113,7 @@ local function on_delta(provider, data, callback)
 
 	local ok, parsed_data = pcall(vim.json.decode, json)
 	if not ok then
-		api.nvim_err_writeln("Error decoding JSON: " .. parsed_data)
+		vim.notify("Failed to parse JSON: " .. parsed_data, vim.log.levels.ERROR, { title = "Alpha4" })
 		return
 	end
 
@@ -253,7 +252,11 @@ function M.do_request(opts, request)
 		on_stderr = function(_, _) end,
 		on_exit = vim.schedule_wrap(function(_, code)
 			if code ~= 0 then
-				print("Call to " .. opts.provider.name .. " failed with code " .. code)
+				vim.notify(
+					"Call to " .. opts.provider.name .. " failed with code " .. code,
+					vim.log.levels.ERROR,
+					{ title = "Alpha4" }
+				)
 			end
 
 			if opts.on_end then

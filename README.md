@@ -9,6 +9,8 @@ Alpha4 is an AI-powered programming assistant for Neovim. It enhances your codin
 - Code generation and completion
 - Dedicated chat interface for extended discussions
 
+https://github.com/user-attachments/assets/d602c512-1de1-426e-b6aa-86e0c214245c
+
 ## Installation
 
 ### Using LazyVim
@@ -55,7 +57,7 @@ Alpha4 provides several commands for easy access:
 ### Chat Interface
 
 1. When the chat interface opens, type your message at the bottom of the window.
-2. Press `<leader><CR>` to send your message.
+2. Press `<leader><CR>` to send your message (default key binding).
 3. Alpha4 will respond in the chat window.
 4. Continue the conversation as needed.
 5. To close the chat, press `<leader>lc` again or use your normal Neovim window closing command (e.g., `:q`).
@@ -74,9 +76,6 @@ require('alpha4').setup({
     ollama = {
       url = "http://localhost:11434/api/chat",
       model = "llama3.1",
-      temperature = 0.3,
-      top_p = 0.9,
-      top_k = 40,
     },
     groq = {
       url = "https://api.groq.com/openai/v1/chat/completions",
@@ -183,74 +182,6 @@ require('alpha4').setup({
 })
 ```
 
-### Configuration Options Explained
-
-#### General Options
-
-- `default_provider` (string): The AI provider to use by default. Options include "ollama", "groq", "togetherai", "openrouter", "anthropic", and "openai".
-
-#### Providers
-
-The `providers` table contains configuration options for each supported AI provider. Each provider has its own set of options:
-
-- `url` (string): The API endpoint for the provider.
-- `model` (string): The specific AI model to use.
-- `api_key_name` (string): The name of the environment variable containing the API key (for non-Ollama providers).
-- `temperature` (number): Controls randomness in the AI's responses. Range: 0.0 to 1.0.
-- `top_p` (number): Nucleus sampling threshold. Range: 0.0 to 1.0.
-- `top_k` (number): Limits the number of highest probability tokens to consider at each step.
-
-#### Keys
-
-The `keys` table defines keybindings for Alpha4 commands. Each entry is a table with the following structure:
-
-- First element (string): The key combination (e.g., "lc").
-- Second element (string): The command to run (e.g., "<CMD>Alpha4ToggleChat<CR>").
-- `desc` (string): A description of the command.
-
-#### Chat
-
-The `chat` table contains configuration options specific to the chat interface:
-
-- `keys.submit` (string): The key combination to submit a message in the chat interface.
-
-#### Params
-
-The `params` table contains AI parameters for different tasks (chat, replace, suggest, explain). Each task has its own set of parameters:
-
-- `temperature` (number): Controls randomness in the AI's responses. Higher values (e.g., 0.8) make output more random, while lower values (e.g., 0.2) make it more focused and deterministic. Range: 0.0 to 1.0.
-
-- `top_p` (number): Nucleus sampling threshold. The AI considers the smallest set of tokens whose cumulative probability exceeds this value. A higher value (e.g., 0.9) allows more diverse responses, while a lower value (e.g., 0.5) makes responses more focused. Range: 0.0 to 1.0.
-
-- `top_k` (number): Limits the number of highest probability tokens to consider at each step. A lower value (e.g., 10) makes the output more focused, while a higher value (e.g., 50) allows for more diverse responses.
-
-- `repetition_penalty` (number): Penalizes the model for repeating the same words or phrases. A value greater than 1.0 reduces repetition, while a value less than 1.0 encourages repetition. Typical range: 1.0 to 1.5.
-
-- `frequency_penalty` (number): Decreases the likelihood of frequently used tokens. A positive value reduces the probability of tokens that have appeared frequently in the generated text. Typical range: 0.0 to 2.0.
-
-- `presence_penalty` (number): Increases the likelihood of new tokens. A positive value increases the probability of tokens that haven't appeared in the generated text. Typical range: 0.0 to 2.0.
-
-- `max_tokens` (number): The maximum number of tokens the AI can generate for this specific task.
-
-##### Task-Specific Params
-
-1. `chat`: Parameters for the interactive chat interface. Higher temperature and top_p values encourage more creative and diverse responses.
-
-2. `replace`: Parameters for code replacement tasks. Lower temperature and top_p values promote more focused and deterministic responses, suitable for precise code modifications.
-
-3. `suggest`: Parameters for code suggestions. Very low temperature and top_p values ensure predictable and consistent code completions.
-
-4. `explain`: Parameters for code explanations. Moderate values balance clarity with flexibility in explanations.
-
-#### Prompts
-
-The prompts table allows you to customize the system and user prompts for different tasks. Each task (explain, replace, suggest, chat) has its own set of prompts:
-
-- `system` (string): The system prompt that sets the context and behavior for the AI.
-- `user` (string): The user prompt that provides specific instructions for the task.
-
-Customizing these prompts allows you to fine-tune the AI's behavior for each task. For example, you can make the explanations more detailed, the code replacements more conservative, or the suggestions more creative by adjusting these prompts.
-
 ## Supported Providers
 
 Alpha4 supports multiple AI providers. To use a provider other than Ollama, you'll need to set up API keys:
@@ -261,15 +192,8 @@ Alpha4 supports multiple AI providers. To use a provider other than Ollama, you'
 4. OpenRouter: Set the `OPENROUTER_API_KEY` environment variable
 5. Anthropic: Set the `ANTHROPIC_API_KEY` environment variable
 6. OpenAI: Set the `OPENAI_API_KEY` environment variable
-7. Custom: Any other provider with a compatible API can be added to the configuration
 
 To change providers, update the `default_provider` option in the setup function.
-
-## Roadmap
-
-- [ ] Local RAG (Retrieval-Augmented Generation)
-- [ ] Advanced Prompting Techniques (ReAct, Tree of Thoughts, etc.)
-- [ ] Language Server Integration
 
 ## Troubleshooting
 
@@ -287,3 +211,9 @@ To change providers, update the `default_provider` option in the setup function.
    - Verify that the Ollama URL in the configuration matches your Ollama setup
 
 For more help, please open an issue on the GitHub repository.
+
+## Roadmap
+
+- [x] LSP diagnostics for code analysis
+- [ ] Local RAG (Retrieval-Augmented Generation)
+- [ ] Advanced Prompting Techniques (ReAct, Tree of Thoughts, etc.)

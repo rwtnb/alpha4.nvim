@@ -100,7 +100,6 @@ function M.replace(opts)
 	local system, user = prompt.format("replace", opts.task or task)
 
 	api.nvim_command("normal! d")
-	api.nvim_command("normal! k")
 
 	llm.call({
 		provider = llm.get_provider(opts.params.replace, opts.provider),
@@ -146,7 +145,7 @@ function M.explain(opts)
 	local system, user = prompt.format("explain", opts.task or "Explain code")
 
 	M.scratch:show("markdown")
-	M.scratch:append("# Explaining Code\n\n")
+	M.scratch:write(string.format("# Explaining Code - %s", os.date("%Y-%m-%d %H:%M:%S")))
 
 	llm.call({
 		provider = llm.get_provider(opts.params.chat, opts.provider),

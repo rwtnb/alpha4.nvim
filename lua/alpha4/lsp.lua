@@ -10,11 +10,7 @@ function M.get_diagnostics()
 		table.insert(messages, string.format("Line %d: %s", d.lnum + 1, d.message))
 	end
 
-	if #messages == 0 then
-		return "<LSP:DIAGNOSTICS>\nNo diagnostics found\n</LSP:DIAGNOSTICS>"
-	end
-
-	return string.format("<LSP:DIAGNOSTICS>\n%s\n</LSP:DIAGNOSTICS>", table.concat(messages, "\n"))
+	return messages
 end
 
 return M

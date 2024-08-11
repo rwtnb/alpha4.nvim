@@ -150,7 +150,8 @@ function M.setup(opts)
 end
 
 function M.format(mode, task)
-	local context = buffer.lines({ all = true }) .. "\n" .. lsp.get_diagnostics()
+	local context = buffer.lines({ all = true })
+	local diagnostics = lsp.get_diagnostics()
 	local selection = buffer.selection() and table.concat(buffer.selection(), "\n")
 
 	if mode == "chat" then
@@ -180,6 +181,11 @@ function M.format(mode, task)
 
 	if mode == "explain" or mode == "replace" or mode == "generate" then
 		selection = string.format("<USER:SELECTION>\n%s\n</USER:SELECTION>", selection)
+	end
+
+	if diagnostics and #diagnostics > 0 then
+		context = context
+			.. string.format("\n<LSP:DIAGNOSTICS>\n%s\n</LSP:DIAGNOSTICS>", table.concat(diagnostics, "\n"))
 	end
 
 	local system = M.templates[mode].system
