@@ -138,7 +138,7 @@ local function ollama_request(opts, request)
 	local system = opts.system
 
 	table.insert(request.body.messages, 1, { role = "system", content = system })
-	table.insert(request.body.messages, { role = "assistant", content = "<OUTPUT>" })
+	table.insert(request.body.messages, { role = "assistant", content = "<ALPHA4:OUTPUT>" })
 
 	return vim.tbl_deep_extend("force", request, {
 		body = {
@@ -147,14 +147,14 @@ local function ollama_request(opts, request)
 				top_p = opts.top_p or provider.top_p,
 				top_k = opts.top_k or provider.top_k,
 				repeat_penalty = opts.presence_penalty or provider.presence_penalty,
-				stop = { "</OUTPUT>" },
+				stop = { "</ALPHA4:OUTPUT>" },
 			},
 		},
 	})
 end
 
 local function anthropic_request(opts, request)
-	table.insert(request.body.messages, { role = "assistant", content = "<OUTPUT>" })
+	table.insert(request.body.messages, { role = "assistant", content = "<ALPHA4:OUTPUT>" })
 
 	return vim.tbl_deep_extend("force", request, {
 		headers = {
@@ -166,7 +166,7 @@ local function anthropic_request(opts, request)
 			temperature = opts.temperature or opts.provider.temperature,
 			top_p = opts.top_p or opts.provider.top_p,
 			top_k = opts.top_k or opts.provider.top_k,
-			stop_sequences = { "</OUTPUT>" },
+			stop_sequences = { "</ALPHA4:OUTPUT>" },
 			max_tokens = opts.max_tokens or opts.provider.max_tokens,
 		},
 	})
@@ -177,7 +177,7 @@ local function generic_request(opts, request)
 	local system = opts.system
 
 	table.insert(request.body.messages, 1, { role = "system", content = system })
-	table.insert(request.body.messages, { role = "assistant", content = "<OUTPUT>" })
+	table.insert(request.body.messages, { role = "assistant", content = "<ALPHA4:OUTPUT>" })
 
 	return vim.tbl_deep_extend("force", request, {
 		headers = {
@@ -190,7 +190,7 @@ local function generic_request(opts, request)
 			top_p = opts.top_p or provider.top_p,
 			presence_penalty = opts.presence_penalty or provider.presence_penalty,
 			frequency_penalty = opts.frequency_penalty or provider.frequency_penalty,
-			stop = { "</OUTPUT>" },
+			stop = { "</ALPHA4:OUTPUT>" },
 			max_tokens = opts.max_tokens or provider.max_tokens,
 		},
 	})
