@@ -71,9 +71,6 @@ require('alpha4').setup({
   -- The default AI provider to use
   default_provider = "ollama",
 
-  -- Maximum number of tokens per response
-  max_tokens = 4096,
-
   -- Configuration for different AI providers
   providers = {
     ollama = {
