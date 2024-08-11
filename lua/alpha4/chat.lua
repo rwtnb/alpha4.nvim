@@ -78,8 +78,6 @@ function M.parse_messages()
 		table.insert(M.messages, { speaker, turn, content })
 	end
 
-	print(vim.inspect(M.messages))
-
 	local last_index = #M.messages
 	if last_index > 0 and vim.trim(M.messages[last_index][3]):len() == 0 then
 		table.remove(M.messages, last_index)
