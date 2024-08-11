@@ -1,5 +1,6 @@
 local Job = require("plenary.job")
 
+local fn = vim.fn
 local api = vim.api
 
 local M = {
@@ -73,10 +74,10 @@ local M = {
 }
 
 local function get_api_key(name)
-	local val = vim.fn.getenv(name)
+	local val = fn.getenv(name)
 
 	if not val or val == "" then
-		api.nvim_err_writeln("environment variable not found: " .. name)
+		error("environment variable not found: " .. name)
 		return nil
 	end
 

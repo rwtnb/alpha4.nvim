@@ -15,10 +15,10 @@ local M = {
 		providers = {},
 		prompts = {},
 		keys = {
-			{ "lc", "<CMD>Alpha4ToggleChat<CR>", desc = "Toggle chat" },
-			{ "le", "<CMD>Alpha4Explain<CR>", desc = "Explain" },
-			{ "lr", "<CMD>Alpha4Replace<CR>", desc = "Replace" },
-			{ "ls", "<CMD>Alpha4Suggest<CR>", desc = "Suggest" },
+			{ "<leader>lc", "<CMD>Alpha4ToggleChat<CR>", desc = "Toggle chat" },
+			{ "<leader>le", "<CMD>Alpha4Explain<CR>", desc = "Explain" },
+			{ "<leader>lr", "<CMD>Alpha4Replace<CR>", desc = "Replace" },
+			{ "<leader>ls", "<CMD>Alpha4Suggest<CR>", desc = "Suggest" },
 		},
 		chat = {
 			keys = {
@@ -77,7 +77,7 @@ function M.setup(opts)
 	for _, key in pairs(opts.keys) do
 		key.mode = key.mode or { "n", "v" }
 		for _, mode in pairs(key.mode) do
-			api.nvim_set_keymap(mode, "<leader>" .. key[1], key[2], {
+			api.nvim_set_keymap(mode, key[1], key[2], {
 				noremap = true,
 				silent = true,
 				desc = key.desc,
