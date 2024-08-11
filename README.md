@@ -9,6 +9,8 @@ Alpha4 is an AI-powered programming assistant for Neovim. It enhances your codin
 - Code generation and completion
 - Dedicated chat interface for extended discussions
 
+https://github.com/user-attachments/assets/d602c512-1de1-426e-b6aa-86e0c214245c
+
 ## Installation
 
 ### Using LazyVim
