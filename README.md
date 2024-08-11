@@ -236,6 +236,7 @@ Alpha4 supports multiple AI providers. To use a provider other than Ollama, you'
 4. OpenRouter: Set the `OPENROUTER_API_KEY` environment variable
 5. Anthropic: Set the `ANTHROPIC_API_KEY` environment variable
 6. OpenAI: Set the `OPENAI_API_KEY` environment variable
+7. Custom: Any other provider with a compatible API can be added to the configuration
 
 To change providers, update the `default_provider` option in the setup function.
 
