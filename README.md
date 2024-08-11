@@ -240,6 +240,14 @@ Alpha4 supports multiple AI providers. To use a provider other than Ollama, you'
 
 To change providers, update the `default_provider` option in the setup function.
 
+## Roadmap
+
+- [ ] Local RAG (Retrieval-Augmented Generation)
+- [ ] Advanced Prompting Techniques (ReAct, Tree of Thoughts, etc.)
+- [ ] Language Server Integration
+
+[Rest of the content remains unchanged]
+
 ## Troubleshooting
 
 1. If Alpha4 doesn't respond:
