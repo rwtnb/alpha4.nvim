@@ -170,8 +170,6 @@ require('alpha4').setup({
 
 - `default_provider` (string): The AI provider to use by default. Options include "ollama", "groq", "togetherai", "openrouter", "anthropic", and "openai".
 
-- `max_tokens` (number): The maximum number of tokens the AI can generate in a single response. This limits the length of the AI's output.
-
 #### Providers
 
 The `providers` table contains configuration options for each supported AI provider. Each provider has its own set of options:
