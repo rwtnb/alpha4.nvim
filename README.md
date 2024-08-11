@@ -214,6 +214,6 @@ For more help, please open an issue on the GitHub repository.
 
 ## Roadmap
 
-- [x] LSP diagnostics for code analysis
+- [x] LSP diagnostic messages as context for better suggestions
 - [ ] Local RAG (Retrieval-Augmented Generation)
 - [ ] Advanced Prompting Techniques (ReAct, Tree of Thoughts, etc.)
