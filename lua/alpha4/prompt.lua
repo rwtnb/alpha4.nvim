@@ -1,4 +1,5 @@
 local buffer = require("alpha4.buffer")
+local lsp = require("alpha4.lsp")
 
 local DEFAULT_SYSTEM_PROMPT = [[
 You are Alpha4 an advanced AI programming assistant integrated into a code editor. 
@@ -149,7 +150,7 @@ function M.setup(opts)
 end
 
 function M.format(mode, task)
-	local context = buffer.lines({ all = true })
+	local context = buffer.lines({ all = true }) .. "\n" .. lsp.get_diagnostics()
 	local selection = buffer.selection() and table.concat(buffer.selection(), "\n")
 
 	if mode == "chat" then

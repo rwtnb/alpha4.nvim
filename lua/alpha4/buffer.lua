@@ -17,20 +17,14 @@ function M.current_path()
 end
 
 function M.selection()
-	local is_motion = _G.op_func_llm_prompt ~= nil
 	local start_mark, end_mark
-	if is_motion then
-		start_mark = "'["
-		end_mark = "']"
-	else
-		start_mark = "v"
-		end_mark = "."
-	end
+	start_mark = "v"
+	end_mark = "."
 	local _, srow, scol = unpack(vim.fn.getpos(start_mark))
 	local _, erow, ecol = unpack(vim.fn.getpos(end_mark))
 
 	-- visual line mode
-	if vim.fn.mode() == "V" or is_motion then
+	if vim.fn.mode() == "V" then
 		if srow > erow then
 			return vim.api.nvim_buf_get_lines(0, erow - 1, srow, true)
 		else
