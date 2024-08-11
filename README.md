@@ -271,8 +271,6 @@ To change providers, update the `default_provider` option in the setup function.
 - [ ] Advanced Prompting Techniques (ReAct, Tree of Thoughts, etc.)
 - [ ] Language Server Integration
 
-[Rest of the content remains unchanged]
-
 ## Troubleshooting
 
 1. If Alpha4 doesn't respond:
