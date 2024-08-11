@@ -107,10 +107,10 @@ require('alpha4').setup({
 
   -- Keybindings for Alpha4 commands
   keys = {
-    { "lc", "<CMD>Alpha4ToggleChat<CR>", desc = "Toggle chat" },
-    { "le", "<CMD>Alpha4Explain<CR>", desc = "Explain" },
-    { "lr", "<CMD>Alpha4Replace<CR>", desc = "Replace" },
-    { "ls", "<CMD>Alpha4Suggest<CR>", desc = "Suggest" },
+    { "<leader>lc", "<CMD>Alpha4ToggleChat<CR>", desc = "Toggle chat" },
+    { "<leader>le", "<CMD>Alpha4Explain<CR>", desc = "Explain" },
+    { "<leader>lr", "<CMD>Alpha4Replace<CR>", desc = "Replace" },
+    { "<leader>ls", "<CMD>Alpha4Suggest<CR>", desc = "Suggest" },
   },
 
   -- Configuration for the chat interface
