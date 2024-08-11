@@ -159,6 +159,27 @@ require('alpha4').setup({
       max_tokens = 4096,
     },
   },
+
+  -- Customizable prompts for different tasks
+  -- @see: lua/alpha4/prompts.lua
+  prompts = {
+    explain = {
+      system = "Your custom system prompt for explanations",
+      user = "Your custom user prompt for explanations",
+    },
+    replace = {
+      system = "Your custom system prompt for code replacement",
+      user = "Your custom user prompt for code replacement",
+    },
+    suggest = {
+      system = "Your custom system prompt for code suggestions",
+      user = "Your custom user prompt for code suggestions",
+    },
+    chat = {
+      system = "Your custom system prompt for chat interactions",
+      user = "Your custom user prompt for chat interactions",
+    },
+  },
 })
 ```
 
@@ -220,6 +241,15 @@ The `params` table contains AI parameters for different tasks (chat, replace, su
 3. `suggest`: Parameters for code suggestions. Very low temperature and top_p values ensure predictable and consistent code completions.
 
 4. `explain`: Parameters for code explanations. Moderate values balance clarity with flexibility in explanations.
+
+##### Prompts
+
+The prompts table allows you to customize the system and user prompts for different tasks. Each task (explain, replace, suggest, chat) has its own set of prompts:
+
+- `system` (string): The system prompt that sets the context and behavior for the AI.
+- `user` (string): The user prompt that provides specific instructions for the task.
+
+Customizing these prompts allows you to fine-tune the AI's behavior for each task. For example, you can make the explanations more detailed, the code replacements more conservative, or the suggestions more creative by adjusting these prompts.
 
 ## Supported Providers
 
