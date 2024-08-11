@@ -242,7 +242,7 @@ The `params` table contains AI parameters for different tasks (chat, replace, su
 
 4. `explain`: Parameters for code explanations. Moderate values balance clarity with flexibility in explanations.
 
-##### Prompts
+#### Prompts
 
 The prompts table allows you to customize the system and user prompts for different tasks. Each task (explain, replace, suggest, chat) has its own set of prompts:
 
