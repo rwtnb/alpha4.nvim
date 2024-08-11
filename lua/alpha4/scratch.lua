@@ -84,10 +84,6 @@ function Scratch:update_cursor()
 	api.nvim_win_set_cursor(self.winid, { #lines, lines[count]:len() })
 end
 
-function Scratch:set_lines(lines)
-	api.nvim_buf_set_lines(self.bufnr, 0, -1, false, lines)
-end
-
 function Scratch:clear()
 	api.nvim_buf_set_lines(self.bufnr, 0, -1, false, {})
 end

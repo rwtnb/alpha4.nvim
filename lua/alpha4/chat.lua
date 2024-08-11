@@ -29,37 +29,6 @@ function M.setup(opts)
 	)
 end
 
--- TODO: load documents to the chat context
-function M.load_documents(file_path)
-	local cwd = vim.fn.getcwd()
-	local contents = ""
-
-	if file_path then
-		local full_path
-		if file_path:sub(1, 1) == "/" then
-			full_path = file_path
-		elseif file_path:sub(1, 2) == "~/" then
-			full_path = os.getenv("HOME") .. file_path:sub(2)
-		elseif file_path:sub(1, 2) == "./" then
-			full_path = cwd .. file_path:sub(2)
-		else
-			full_path = cwd .. "/" .. file_path
-		end
-		local file = io.open(full_path, "r")
-		if file then
-			local content = file:read("*all")
-			file:close()
-
-			local relative_path = vim.fn.fnamemodify(full_path, ":." .. cwd .. ":")
-			contents = string.format('\n\n<File path="%s">\n%s\n</File>', relative_path, content)
-		else
-			vim.notify("Cannot open file: " .. full_path, vim.log.levels.WARN, { title = "Alpha4" })
-		end
-	end
-
-	return contents
-end
-
 function M.write_message(speaker, turn, content)
 	local last_line = M.scratch:last_line()
 	if last_line and last_line:len() > 0 then

@@ -175,15 +175,4 @@ function M.toggle_chat(opts)
 	})
 end
 
-function M.prompt_operatorfunc(opts)
-	local old_func = vim.go.operatorfunc
-	_G.op_func_llm_prompt = function()
-		llm.call(opts)
-		vim.go.operatorfunc = old_func
-		_G.op_func_llm_prompt = nil
-	end
-	vim.go.operatorfunc = "v:lua.op_func_llm_prompt"
-	vim.api.nvim_feedkeys("g@", "n", false)
-end
-
 return M

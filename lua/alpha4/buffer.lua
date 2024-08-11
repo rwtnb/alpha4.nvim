@@ -2,18 +2,8 @@ local File = require("alpha4.file")
 
 local M = {}
 
-function M.insert_mode()
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", false, true, true), "nx", false)
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("a", false, true, true), "nx", false)
-end
-
 function M.normal_mode()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", false, true, true), "nx", false)
-end
-
-function M.replace()
-	vim.api.nvim_command("normal! d")
-	vim.api.nvim_command("normal! k")
 end
 
 function M.write_string(str)
@@ -107,14 +97,6 @@ function M.lines(opts)
 	table.insert(lines, 1, header)
 
 	return file_contents .. table.concat(lines, "\n") .. "\n</File>"
-end
-
-function M.set_filetype(bufnr, ft)
-	vim.api.nvim_set_option_value("filetype", ft or "markdown", { buf = bufnr })
-end
-
-function M.set_lines(bufnr, lines)
-	vim.api.nvim_buf_set_lines(bufnr, -2, -1, true, vim.split(lines, "\n"))
 end
 
 return M
