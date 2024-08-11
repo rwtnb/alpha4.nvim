@@ -9,8 +9,6 @@ Alpha4 is an AI-powered programming assistant for Neovim. It enhances your codin
 - Code generation and completion
 - Dedicated chat interface for extended discussions
 
-https://github.com/user-attachments/assets/d602c512-1de1-426e-b6aa-86e0c214245c
-
 ## Installation
 
 ### Using LazyVim
@@ -71,6 +69,9 @@ require('alpha4').setup({
   -- The default AI provider to use
   default_provider = "ollama",
 
+  -- Maximum number of tokens per response
+  max_tokens = 4096,
+
   -- Configuration for different AI providers
   providers = {
     ollama = {
@@ -86,13 +87,13 @@ require('alpha4').setup({
       api_key_name = "GROQ_API_KEY",
     },
     togetherai = {
-      url = "https://api.togetherai.co/v1/chat/completions",
-      model = "gpt-4o",
+      url = "https://api.together.xyz/v1/chat/completions",
+      model = "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
       api_key_name = "TOGETHERAI_API_KEY",
     },
     openrouter = {
       url = "https://api.openrouter.io/v1/chat/completions",
-      model = "gpt-4o",
+      model = "openai/gpt-4o-2024-08-06",
       api_key_name = "OPENROUTER_API_KEY",
     },
     anthropic = {
@@ -169,6 +170,8 @@ require('alpha4').setup({
 #### General Options
 
 - `default_provider` (string): The AI provider to use by default. Options include "ollama", "groq", "togetherai", "openrouter", "anthropic", and "openai".
+
+- `max_tokens` (number): The maximum number of tokens the AI can generate in a single response. This limits the length of the AI's output.
 
 #### Providers
 

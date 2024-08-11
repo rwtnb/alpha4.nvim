@@ -30,8 +30,8 @@ local M = {
 				max_tokens = 4096,
 			},
 			togetherai = {
-				url = "https://api.togetherai.co/v1/chat/completions",
-				model = "gpt-4o",
+				url = "https://api.together.xyz/v1/chat/completions",
+				model = "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
 				api_key_name = "TOGETHERAI_API_KEY",
 				api_key = nil,
 				temperature = 0.3,
