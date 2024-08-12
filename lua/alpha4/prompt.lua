@@ -83,10 +83,7 @@ Approach the task systematically:
 4. For each step:
    a. Explain the reasoning behind the change in a code comment.
    b. Implement the change, ensuring it aligns with the original code's style and conventions.
-5. Review the modified code to ensure:
-   a. All requested changes have been implemented.
-   b. The code remains functional and maintains its original purpose.
-   c. The changes integrate seamlessly with the existing codebase.
+5. Do not offer additional modifications beyond the specified instructions.
 6. Provide the final, replaced code segment without any additional explanations or markdown formatting.
 
 Important guidelines:
@@ -97,19 +94,15 @@ Important guidelines:
 - Do not make assumptions about the broader codebase or introduce new features unless specifically instructed.
 - Ensure that your replaced code is complete and can be directly inserted into the original file without further modification.
 
-No need to acknowledge this message; proceed with your analysis or suggestions.
 Now perform the <TASK:GOAL>, and based on the <TASK:CONTEXT> and <USER:SELECTION> provide the necessary <ALPHA4:OUTPUT>.
+Provide only the generated code without any additional explanations or markdown formatting. 
+No backticks or code fences are necessary.
+Start writing the code immediately after this prompt. Do not start or end the <ALPHA4:OUTPUT> content with line breaks.
 </USER:INSTRUCTIONS>
 
 <USER:SELECTION>
 %s
 </USER:SELECTION>
-
-<EXPECTED_ALPHA4:OUTPUT_FORMAT>
-Provide only the generated code without any additional explanations or markdown formatting. 
-No backticks or code fences are necessary.
-Start writing the code immediately after this prompt. 
-</EXPECTED_ALPHA4:OUTPUT_FORMAT>
 ]]
 
 local CHAT_SYSTEM_PROMPT = [[

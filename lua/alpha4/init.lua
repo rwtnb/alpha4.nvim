@@ -99,14 +99,8 @@ function M.replace(opts)
 	local task = "Follow the TODO and FIXME comments in the <USER:SELECTION> and provide the suggested replacements."
 	local system, user = prompt.format("replace", opts.task or task)
 
-	local cursor = api.nvim_win_get_cursor(0)
-	api.nvim_del_current_line()
-	if cursor[1] > 1 then
-		api.nvim_win_set_cursor(0, { cursor[1] - 1, cursor[2] })
-	else
-		api.nvim_buf_set_lines(0, cursor[1] - 1, cursor[1] - 1, false, { "" })
-		api.nvim_win_set_cursor(0, { cursor[1], 0 })
-	end
+	api.nvim_command("normal! d")
+	api.nvim_command("normal! O")
 
 	llm.call({
 		provider = llm.get_provider(opts.params.replace, opts.provider),
